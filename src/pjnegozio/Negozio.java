@@ -23,7 +23,7 @@ public class Negozio {
         
     }
     /**
-     * Questo metodo prende l'istanza del negozio, se l'istanza non è ancora stata creata ne crea una nuova.
+     * Questo metodo ritorna l'istanza del negozio, se l'istanza non è ancora stata creata ne crea una nuova.
      * @return istanza del negozio.
      */
     public static Negozio getInstance(){
@@ -100,7 +100,8 @@ public class Negozio {
      * Questo metodo permette di licenziare l'i-esimo dipendente.
      * @param i posizione del dipendente.
      */
-    public void deleteDipendente(int i){
+    public void deleteDipendente(int i) throws IllegalArgumentException{
+        if(i>=this.dipendenti.size() || i<0) throw new IllegalArgumentException();
         this.dipendenti.remove(i);
     }
     /**
@@ -122,22 +123,24 @@ public class Negozio {
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
             if(p.getNome().equals(n))
+                magazzino.remove(i);
                 r=true;
         }
         return r;
     }
     /**
-     * Questo metodo permette di eliminare un dipendente dati il suo nome e cognome.
-     * @param n nome dipendente.
-     * @param c cognome dipendente.
+     * Questo metodo permette di eliminare un dipendente data la sua matricola.
+     * @param m matricola del dipendente.
      * @return vero/falso in base al risultato della funzione.
      */
-    public boolean delateDipendente(String n, String c){
+    public boolean delateDipendente(int m){
         boolean r=false;
         for(int i=0; i<dipendenti.size();i++){
             Dipendente d= dipendenti.get(i);
-            if(d.getNome().equals(n) && d.getCognome().equals(c))
+            if(d.matricola==m){
+                dipendenti.remove(i);
                 r=true;
+            }
         }
         return r;
     }
@@ -163,4 +166,6 @@ public class Negozio {
             if(p.getDatascadenza()< d )
         }
     }
+    
+ 
 }

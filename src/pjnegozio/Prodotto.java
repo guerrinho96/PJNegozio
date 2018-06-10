@@ -16,15 +16,15 @@ import java.util.*;
 public class Prodotto {
     //Attributi
     private String nome;
-    private String produttore;
+    private String marca;
     private Date datascadenza;
     private int quantità;
     private double prezzo;
     //Metodi
     //Costruttore
-    public Prodotto(String n, String p, Date d, int q, double pr){
+    public Prodotto(String n, String m, Date d, int q, double pr){
         nome=n;
-        produttore=p;
+        marca=m;
         datascadenza=d;
         quantità=q;
         prezzo=pr;
@@ -34,8 +34,8 @@ public class Prodotto {
     public String getNome(){
         return nome;
     }
-    public String getProduttore() {
-        return produttore;
+    public String getMarca() {
+        return marca;
     }
     public Date getDatascadenza() {
         return datascadenza;
@@ -54,7 +54,7 @@ public class Prodotto {
     }
     @Override
     public String toString() {
-        return  "Prodotto{" + "nome=" + nome + ", produttore=" + produttore +
+        return  "Prodotto{" + "nome=" + nome + ", produttore=" + marca +
                 ", datascadenza=" + datascadenza + ", quantità=" + quantità + '}';
     }
     
