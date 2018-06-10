@@ -1,0 +1,166 @@
+
+package pjnegozio;
+import java.util.*;
+
+/**<b>Classe Negozio</b> <br>
+ * La classe Negozio ha al suo interno informazioni sul nome, i dipendenti, e il magazzino. 
+ * @author Oscar
+ */
+public class Negozio {
+    private static Negozio istanza;
+    private String nome;
+    private ArrayList<Dipendente> dipendenti;
+    private ArrayList<Prodotto> magazzino; 
+    
+    /**
+     * Costruttore di default che inizializza le due liste utilizzate dipendenti e magazzino
+     * e permette di inserire il nome del negozio.
+     */
+    private Negozio(){
+        this.nome=new String();
+        this.dipendenti = new ArrayList<Dipendente>();
+        this.magazzino = new ArrayList<Prodotto>();
+        
+    }
+    /**
+     * Questo metodo prende l'istanza del negozio, se l'istanza non è ancora stata creata ne crea una nuova.
+     * @return istanza del negozio.
+     */
+    public static Negozio getInstance(){
+    if (istanza == null)
+    {
+      istanza = new Negozio();
+    }
+    return istanza; 
+  }
+
+    /**
+     * Questo metodo restituisce il nome del negozio.
+     * @return il nome del negozio.
+     */
+    public String getNome() {
+        return nome;
+    }
+    /**
+     * Questo metodo permette di cambiare il nome del negozio.
+     * @param n nome del negozio.
+     */
+    public void setNome(String n) {
+        this.nome = n;
+    }
+    /**
+     * Questo metodo restituisce la lista di dipendenti del negozio.
+     * @return dipendenti del negozio. 
+     */
+    public ArrayList<Dipendente> getDipendenti() {
+        return dipendenti;
+    }
+    /**
+     * Questo metodo restituisce l'inventario del magazzino.
+     * @return i prodotti presenti nel magazino.
+     */
+    public ArrayList<Prodotto> getMagazzino() {
+        return magazzino;
+    }
+    /**
+     * Questo metodo restituisce l'i-esimo prodotto all'interno del magazzino.
+     * @param i posizione del prodotto.
+     * @return prodotto richiesto.
+     * @throws IllegalArgumentException 
+     */
+    public Prodotto getProdotto(int i) throws IllegalArgumentException{
+        if(i>=magazzino.size() || i<0) throw new IllegalArgumentException();
+        else return this.magazzino.get(i);
+    }
+    /**
+     * Questo metodo restituisce l'i-esimo dipendente del negozio.
+     * @param i posizione del dipendente.
+     * @return dipendente richiesto.
+     * @throws IllegalArgumentException 
+     */
+    public Dipendente getDipendente(int i) throws IllegalArgumentException{
+        if(i>=dipendenti.size() || i<0) throw new IllegalArgumentException();
+        else return this.dipendenti.get(i);
+    }
+    /**
+     * Questo metodo permette di aggiungere un dipendente alla lista dipendenti.
+     * @param d dipendente che va aggiunto alla lista.
+     */        
+    public void addDipendente(Dipendente d){
+        this.dipendenti.add(d);
+    }
+    /**
+     * Questo metodo permette di aggiungere un prodotto nel magazzino.
+     * @param p prodotto che si vuole inserire.
+     */
+    public void addProdotto(Prodotto p){
+        this.magazzino.add(p);
+    }
+    /**
+     * Questo metodo permette di licenziare l'i-esimo dipendente.
+     * @param i posizione del dipendente.
+     */
+    public void deleteDipendente(int i){
+        this.dipendenti.remove(i);
+    }
+    /**
+     * Questo metodo permette di eliminare l'i-esimo prodotto dal magazzino.
+     * @param i posizione prodotto.
+     * @throws IllegalArgumentException
+     */
+    public void deleteProdotto(int i) throws IllegalArgumentException{
+        if(i>=this.magazzino.size() || i<0) throw new IllegalArgumentException();
+        else this.magazzino.remove(i);
+    }
+    /**
+     * Questo metodo permette di eliminare un prodotto dal suo nome.
+     * @param n nome del prodotto che si vuole eliminare
+     * @return vero/falso in base al risultato della funzione.
+     */
+    public boolean delateProdotto(String n){
+        boolean r=false;
+        for(int i=0; i<magazzino.size();i++){
+            Prodotto p= magazzino.get(i);
+            if(p.getNome().equals(n))
+                r=true;
+        }
+        return r;
+    }
+    /**
+     * Questo metodo permette di eliminare un dipendente dati il suo nome e cognome.
+     * @param n nome dipendente.
+     * @param c cognome dipendente.
+     * @return vero/falso in base al risultato della funzione.
+     */
+    public boolean delateDipendente(String n, String c){
+        boolean r=false;
+        for(int i=0; i<dipendenti.size();i++){
+            Dipendente d= dipendenti.get(i);
+            if(d.getNome().equals(n) && d.getCognome().equals(c))
+                r=true;
+        }
+        return r;
+    }
+    /**
+     * Questo metodo restituisce il numero totale di prodotti nel magazzino.
+     * @return totale prodotti
+     */
+    public int totMagazzino(){
+        return this.magazzino.size();
+    }
+    /**
+     * Questo metodo restituisce il numero totale di dipendenti del negozio
+     * @return totale dipendenti.
+     */
+    public int totDipendenti(){
+        return this.dipendenti.size();
+    }
+    
+    public void controllaScadenza(){
+        Date d = new Date();
+        for(int i=0; i<magazzino.size();i++){
+            Prodotto p= magazzino.get(i);
+            if(p.getDatascadenza()< d )
+        }
+    }
+}
