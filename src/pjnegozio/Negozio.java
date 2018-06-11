@@ -1,9 +1,14 @@
 
 package pjnegozio;
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
-/**<b>Classe Negozio</b> <br>
- * La classe Negozio ha al suo interno informazioni sul nome, i dipendenti, e il magazzino. 
+/**<i><b>Classe Negozio</b> <br>
+ * La classe Negozio ha al suo interno informazioni sul nome, i dipendenti, e il magazzino.<br>
+ * Il costruttore è dichiarato privato in quanto questa classe deve generare un unica istanza, 
+ * il metodo "getInstance" avrà il compito di accedere al costruttore del negozio.</i>
  * @author Oscar
  */
 public class Negozio {
@@ -23,7 +28,7 @@ public class Negozio {
         
     }
     /**
-     * Questo metodo ritorna l'istanza del negozio, se l'istanza non è ancora stata creata ne crea una nuova.
+     * Questo metodo ritorna l'istanza del negozio, se l'istanza non è ancora stata creata ne crea una nuova attraverso il costruttore.
      * @return istanza del negozio.
      */
     public static Negozio getInstance(){
@@ -33,13 +38,12 @@ public class Negozio {
     }
     return istanza; 
   }
-
     /**
      * Questo metodo restituisce il nome del negozio.
      * @return il nome del negozio.
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
     /**
      * Questo metodo permette di cambiare il nome del negozio.
@@ -53,20 +57,20 @@ public class Negozio {
      * @return dipendenti del negozio. 
      */
     public ArrayList<Dipendente> getDipendenti() {
-        return dipendenti;
+        return this.dipendenti;
     }
     /**
      * Questo metodo restituisce l'inventario del magazzino.
      * @return i prodotti presenti nel magazino.
      */
     public ArrayList<Prodotto> getMagazzino() {
-        return magazzino;
+        return this.magazzino;
     }
     /**
      * Questo metodo restituisce l'i-esimo prodotto all'interno del magazzino.
      * @param i posizione del prodotto.
      * @return prodotto richiesto.
-     * @throws IllegalArgumentException 
+     * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public Prodotto getProdotto(int i) throws IllegalArgumentException{
         if(i>=magazzino.size() || i<0) throw new IllegalArgumentException();
@@ -76,7 +80,7 @@ public class Negozio {
      * Questo metodo restituisce l'i-esimo dipendente del negozio.
      * @param i posizione del dipendente.
      * @return dipendente richiesto.
-     * @throws IllegalArgumentException 
+     * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public Dipendente getDipendente(int i) throws IllegalArgumentException{
         if(i>=dipendenti.size() || i<0) throw new IllegalArgumentException();
@@ -99,6 +103,7 @@ public class Negozio {
     /**
      * Questo metodo permette di licenziare l'i-esimo dipendente.
      * @param i posizione del dipendente.
+     * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public void deleteDipendente(int i) throws IllegalArgumentException{
         if(i>=this.dipendenti.size() || i<0) throw new IllegalArgumentException();
@@ -107,7 +112,7 @@ public class Negozio {
     /**
      * Questo metodo permette di eliminare l'i-esimo prodotto dal magazzino.
      * @param i posizione prodotto.
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public void deleteProdotto(int i) throws IllegalArgumentException{
         if(i>=this.magazzino.size() || i<0) throw new IllegalArgumentException();
@@ -125,6 +130,7 @@ public class Negozio {
             if(p.getNome().equals(n))
                 magazzino.remove(i);
                 r=true;
+                i=magazzino.size();//Così facendo viene eliminato il primo prodotto nell'array che ha quel nome
         }
         return r;
     }
@@ -140,6 +146,7 @@ public class Negozio {
             if(d.matricola==m){
                 dipendenti.remove(i);
                 r=true;
+                i=dipendenti.size(); //quando si trova il dipendente si esce dal ciclo
             }
         }
         return r;
@@ -159,13 +166,27 @@ public class Negozio {
         return this.dipendenti.size();
     }
     
-    public void controllaScadenza(){
+    /*public void controllaScadenza(){
         Date d = new Date();
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
             if(p.getDatascadenza()< d )
         }
+    }*/
+    /**
+     * Questo metodo permette di stampare una stringa contenente le informazioni del negozio
+     * @return informazioni negozio (string)
+     */
+    @Override
+    public String toString(){
+        String s=this.nome+" "+magazzino.size()+" ";
+        for(Prodotto p : this.magazzino) s+=p.toString();
+        s+=dipendenti.size()+" ";
+        for(Dipendente d : this.dipendenti)
+            s+=d.toString();
+        return s;
     }
+    
     
  
 }
