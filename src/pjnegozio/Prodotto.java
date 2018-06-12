@@ -89,8 +89,7 @@ public class Prodotto {
      */
     @Override
     public String toString() {
-        return  "Prodotto{" + "nome=" + nome + ", produttore=" + marca +
-                ", datascadenza=" + datascadenza + ", quantità=" + quantità + '}';
+        return  nome+" "+marca+" "+datascadenza+" "+quantità+" ";
     }
     
     

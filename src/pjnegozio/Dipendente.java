@@ -117,9 +117,7 @@ public abstract class Dipendente {
      */
     @Override
     public String toString() {
-        return  "Dipendente{" + "Matricola=" + matricola + "nome=" + nome + ", cognome=" + cognome + 
-                ", data nascità=" + datanascita + ", telefono=" + telefono + 
-                ", indirizzo=" + indirizzo +" "+ numciv + '}';
+        return  matricola+" "+nome+" "+cognome+" "+datanascita+" "+telefono+" "+indirizzo+" "+numciv;
     }
     
 }

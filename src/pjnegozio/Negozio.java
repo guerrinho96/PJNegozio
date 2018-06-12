@@ -1,9 +1,8 @@
 
 package pjnegozio;
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.lang.*;
+import java.io.*;
 
 /**<i><b>Classe Negozio</b> <br>
  * La classe Negozio ha al suo interno informazioni sul nome, i dipendenti, e il magazzino.<br>
@@ -186,6 +185,26 @@ public class Negozio {
             s+=d.toString();
         return s;
     }
+    /**
+     * Questo metodo permette il salvataggio delle informazioni di negozio su un file.
+     * @param nome nome del file dove vengono salvate le informazioni
+     * @throws FileNotFoundException 
+     */
+    public void savetoFile(String nome) throws FileNotFoundException{
+        PrintWriter file=new PrintWriter(nome);
+        String t=this.toString();
+        file.println(t);
+        file.close();
+    }
+    public void getFromFile(String name) throws FileNotFoundException{
+        File input=new File(name);
+        Scanner in=new Scanner(input);
+        this.magazzino.clear();
+        this.dipendenti.clear();
+        while(in.hasNext())
+        {
+            String n=new String();
+        }
     
     
  
