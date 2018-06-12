@@ -2,6 +2,7 @@
 package pjnegozio;
 
 import java.util.*;
+import java.text.*;
 /** <i><b> Classe Prodotto.</b> <br>
  *La classe prodotto definisce dei prodotti caratterizzati da:
  * <ul><li> Nome</li> <li>Marca(produttore)</li> <li>Data di scadenza</li> <li>Quantità</li><li>Prezzo.</li></ul>
@@ -12,7 +13,7 @@ import java.util.*;
 public class Prodotto {
     private String nome;
     private String marca;
-    private Date datascadenza;
+    private Calendar datascadenza;
     private int quantità;
     private double prezzo;
     /**
@@ -24,7 +25,7 @@ public class Prodotto {
     * @param pr prezzo del prodotto
     * @throws IllegalArgumentException se il prezzo o la quantità sono minori o uguale a 0 
     */
-    public Prodotto(String n, String m, Date d, int q, double pr) throws IllegalArgumentException{
+    public Prodotto(String n, String m, Calendar d, int q, double pr) throws IllegalArgumentException{
         this.nome=n;
         this.marca=m;
         this.datascadenza=d;
@@ -51,7 +52,7 @@ public class Prodotto {
      * Questo metodo restituisce la data di scadenza del prodotto.
      * @return data di scadenza prodotto
      */
-    public Date getDatascadenza() {
+    public Calendar getDatascadenza() {
         return this.datascadenza;
     }
     /**
@@ -89,7 +90,9 @@ public class Prodotto {
      */
     @Override
     public String toString() {
-        return  nome+" "+marca+" "+datascadenza+" "+quantità+" ";
+        DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        String sd= d.format(datascadenza.getTime());
+        return  nome+" "+marca+" "+sd+" "+quantità+" "+prezzo+" ";
     }
     
     

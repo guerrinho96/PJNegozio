@@ -3,6 +3,7 @@ package pjnegozio;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.text.*;
 
 /**<i><b>Classe Negozio</b> <br>
  * La classe Negozio ha al suo interno informazioni sul nome, i dipendenti, e il magazzino.<br>
@@ -165,13 +166,16 @@ public class Negozio {
         return this.dipendenti.size();
     }
     
-    /*public void controllaScadenza(){
-        Date d = new Date();
+    public void controllaScadenza(){
+        Date d = GregorianCalendar.getInstance().getTime(); //data del giorno
+        Calendar c = Calendar.getInstance();
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
-            if(p.getDatascadenza()< d )
+            c=p.getDatascadenza(); //data del prodotto
+            if(d.compareTo(c.getTime())>0 || d.compareTo(c.getTime())==0)
+                this.deleteProdotto(i);     
         }
-    }*/
+    }
     /**
      * Questo metodo permette di stampare una stringa contenente le informazioni del negozio
      * @return informazioni negozio (string)
@@ -204,6 +208,26 @@ public class Negozio {
         while(in.hasNext())
         {
             String n=new String();
+            while(!in.hasNextInt())
+                n+=in.next()+" "; //prende il nome del negozio
+            this.nome=n;
+            int size=in.nextInt(); //prende la lunghezza della lista prodotti
+            for(int i=0; i<size; i++){
+                String p=in.next(); //nome del prodotto
+                String m=in.next(); //marca del prodotto
+                String d=in.next(); //data del prodotto
+                int q=in.nextInt(); //quantità
+                double pr=in.nextDouble(); //prezzo
+                DateFormat df = new SimpleDateFormat("dd/M/yyyy");
+                df.setLenient(false);
+                Date data= df.parse(d);
+                Prodotto prod = new Prodotto(p,m,d,q,pr);
+                this.addProdotto(prod);
+            }
+            size=in.nextInt(); //lunghezza lista dipendenti
+            for(int i =0; i<size; i++){
+                
+            }
         }
     
     

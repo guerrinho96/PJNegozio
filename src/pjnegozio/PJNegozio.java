@@ -2,6 +2,7 @@
 package pjnegozio;
 
 import java.util.*;
+import java.text.*;
 
 /**
  * @author Oscar
@@ -13,11 +14,14 @@ public class PJNegozio {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Date data1 = new Date();
-        Impiegato o = new Impiegato("Nome", "Cognome",data1,"cel","ind",10,"op");
-        Impiegato o2 = new Impiegato("Nome", "Cognome",data1,"cel","ind",10,"op");
-        System.out.println("o: "+o.toString());
-        System.out.println("o: "+o2.toString());
+        String n = "Red Bull";
+        String m = n;
+        Calendar d = Calendar.getInstance();
+        int q=10;
+        double p =2;
+        Prodotto pro = new Prodotto(n,m,d,q,p);
+        System.out.println(pro.toString());
+        
     }
     
 }
