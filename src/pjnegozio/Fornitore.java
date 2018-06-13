@@ -25,7 +25,7 @@ public class Fornitore extends Dipendente{
     //toString
     @Override
     public String toString() {
-        return "Fornitore{ "+nome+" "+cognome + ", Matricola=" +matricola + ", presso=" +riferimento+ '}';
+        return "Fornitore "+super.toString()+" "+riferimento;
     }
     
     

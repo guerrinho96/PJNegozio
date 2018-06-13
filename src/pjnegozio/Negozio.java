@@ -200,7 +200,7 @@ public class Negozio {
         file.println(t);
         file.close();
     }
-    public void getFromFile(String name) throws FileNotFoundException{
+    public void getFromFile(String name) throws FileNotFoundException, ParseException{
         File input=new File(name);
         Scanner in=new Scanner(input);
         this.magazzino.clear();
@@ -223,9 +223,15 @@ public class Negozio {
                 Date data= df.parse(d);
                 Prodotto prod = new Prodotto(p,m,d,q,pr);
                 this.addProdotto(prod);
-            }
             size=in.nextInt(); //lunghezza lista dipendenti
             for(int i =0; i<size; i++){
+                String chiave =in.next(); //parola chiave
+                int mat =in.nextInt(); //matricola
+                String no =in.next(); //nome
+                String c =in.next(); //cognome
+                String data =in.next(); //data
+                String tel =in.next();
+                String ind =in.next();
                 
             }
         }

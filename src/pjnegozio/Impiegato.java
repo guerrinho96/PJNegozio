@@ -30,7 +30,7 @@ public class Impiegato extends Dipendente {
     //toString
     @Override
     public String toString() {
-        return "Operaio{ "+nome+" "+cognome + ", matricola=" + matricola + ", ruolo=" + ruolo + '}';
+        return "Impiegato "+super.toString()+" "+ruolo;
     }
 
 }

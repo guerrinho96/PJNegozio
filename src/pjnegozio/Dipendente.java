@@ -4,6 +4,7 @@ package pjnegozio;
  * @author Oscar 
  */
 
+import java.text.*;
 import java.util.*;
 /** <i><b>Classe Dipendente.</b> <br>
  * La classe astratta dipendente definisce un generico dipendente caratterizato da:
@@ -117,7 +118,9 @@ public abstract class Dipendente {
      */
     @Override
     public String toString() {
-        return  matricola+" "+nome+" "+cognome+" "+datanascita+" "+telefono+" "+indirizzo+" "+numciv;
+        DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        String sd= d.format(datanascita.getTime());
+        return  matricola+" "+nome+" "+cognome+" "+sd+" "+telefono+" "+indirizzo+" "+numciv;
     }
     
 }

@@ -52,8 +52,10 @@ public class Prodotto {
      * Questo metodo restituisce la data di scadenza del prodotto.
      * @return data di scadenza prodotto
      */
-    public Calendar getDatascadenza() {
-        return this.datascadenza;
+    public String getDatascadenza() {
+        DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        String sd= d.format(datascadenza.getTime());
+        return sd;
     }
     /**
      * Questo metodo restituisce la quantità del prodotto.

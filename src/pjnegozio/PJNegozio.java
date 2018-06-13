@@ -21,6 +21,7 @@ public class PJNegozio {
         double p =2;
         Prodotto pro = new Prodotto(n,m,d,q,p);
         System.out.println(pro.toString());
+        System.out.println(pro.getDatascadenza());
         
     }
     
