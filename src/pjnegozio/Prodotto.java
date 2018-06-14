@@ -110,7 +110,6 @@ public class Prodotto {
         String sd= d.format(datascadenza.getTime());
         return "Prodotto: \n"+nome+" "+marca+"\ndata scadenza: "+sd+"\nquantità: "+quantità+"\nprezzo(€): "+prezzo;
     }
-    
 }
     
     

@@ -131,5 +131,4 @@ public abstract class Dipendente {
         return "Dipendente numero: "+matricola+"\n"+nome+" "+cognome+"\n"+sd+"\n"+indirizzo
                 +" "+numciv+"\n"+telefono;
     }
-    
 }
