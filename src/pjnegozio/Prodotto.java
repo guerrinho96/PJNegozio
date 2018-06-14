@@ -22,17 +22,14 @@ public class Prodotto {
     * @param m marca del prodotto
     * @param d data di scadenza del prodotto
     * @param q quantità del prodotto
-    * @param pr prezzo del prodotto
-    * @throws IllegalArgumentException se il prezzo o la quantità sono minori o uguale a 0 
+    * @param pr prezzo del prodotto 
     */
-    public Prodotto(String n, String m, Calendar d, int q, double pr) throws IllegalArgumentException{
+    public Prodotto(String n, String m, Calendar d, int q, double pr){
         this.nome=n;
         this.marca=m;
         this.datascadenza=d;
-        if(q<=0) throw new IllegalArgumentException();
-        else this.quantità=q;
-        if(pr<=0) throw new IllegalArgumentException();
-        else this.prezzo=pr;
+        this.setQuantità(q);
+        this.setPrezzo(pr);
     }
     /**
      * Questo metodo restituisce il nome del negozio.
@@ -49,13 +46,20 @@ public class Prodotto {
         return this.marca;
     }
     /**
-     * Questo metodo restituisce la data di scadenza del prodotto.
-     * @return data di scadenza prodotto
+     * Questo metodo restituisce la data di scadenza del prodotto in un stringa.
+     * @return data di scadenza prodotto [string]
      */
     public String getDatascadenza() {
         DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
         String sd= d.format(datascadenza.getTime());
         return sd;
+    }
+    /**
+     * Questo metodo restituisce la data di scadenza del prodotto in formato Calendar.
+     * @return data in formato Calendar
+     */
+    public Calendar getDatascadenzabyCal() {
+        return this.datascadenza;
     }
     /**
      * Questo metodo restituisce la quantità del prodotto.
@@ -82,8 +86,9 @@ public class Prodotto {
     }/**
      * Questo metodo permette di cambiare il prezzo del prodotto.
      * @param p nuovo prezzo
+     * @throws IllegalArgumentException se il prezzo è minore o uguale a 0
      */
-    public void setPrezzo(int p) throws IllegalArgumentException{
+    public void setPrezzo(double p) throws IllegalArgumentException{
         if(p<=0) throw new IllegalArgumentException();
         else this.prezzo = p;
     }/**
@@ -91,12 +96,20 @@ public class Prodotto {
      * @return informazioni del prodotto
      */
     @Override
-    public String toString() {
+    public String toString(){
         DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
         String sd= d.format(datascadenza.getTime());
         return  nome+" "+marca+" "+sd+" "+quantità+" "+prezzo+" ";
     }
-    
+    /**
+     * Questo metodo permette di stampare le informazioni del prodotto.
+     * @return  informazioni del prodotto
+     */
+    public String printProdotto(){
+        DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        String sd= d.format(datascadenza.getTime());
+        return "Prodotto: \n"+nome+" "+marca+"\ndata scadenza: "+sd+"\nquantità: "+quantità+"\nprezzo(€): "+prezzo;
+    }
     
 }
     

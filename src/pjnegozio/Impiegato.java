@@ -1,22 +1,18 @@
 
 package pjnegozio;
 
-import java.util.Date;
-
-/**
- * @author Oscar
- */
 import java.util.*;
 /**
- * Classe Impiegato
- * La classe operaio è una sottoclasse di Dipendente. Il ruolo indica la manzione all'interno del negozio.
+ * <i><b>Classe Impiegato<b><br>
+ * La classe Impiegato è un estensione della classe Dipendente.
+ * @author Oscar
  */
 public class Impiegato extends Dipendente {
     //Attributi
     private String ruolo;
     //Metodi
     //Costruttore
-    public Impiegato(String n, String c, Date d, String t, String i, int nc, String r) {
+    public Impiegato(String n, String c, Calendar d, String t, String i, int nc, String r) {
         super(n, c, d, t, i, nc);
         ruolo=r;
     }
@@ -31,6 +27,10 @@ public class Impiegato extends Dipendente {
     @Override
     public String toString() {
         return "Impiegato "+super.toString()+" "+ruolo;
+    }
+    @Override
+    public String printDipendente(){
+        return super.printDipendente()+"\n"+ruolo;
     }
 
 }

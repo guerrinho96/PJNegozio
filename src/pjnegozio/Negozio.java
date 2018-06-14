@@ -123,7 +123,7 @@ public class Negozio {
      * @param n nome del prodotto che si vuole eliminare
      * @return vero/falso in base al risultato della funzione.
      */
-    public boolean delateProdotto(String n){
+    public boolean deleteProdotto(String n){
         boolean r=false;
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
@@ -139,7 +139,7 @@ public class Negozio {
      * @param m matricola del dipendente.
      * @return vero/falso in base al risultato della funzione.
      */
-    public boolean delateDipendente(int m){
+    public boolean deleteDipendentebyMat(int m){
         boolean r=false;
         for(int i=0; i<dipendenti.size();i++){
             Dipendente d= dipendenti.get(i);
@@ -165,20 +165,22 @@ public class Negozio {
     public int totDipendenti(){
         return this.dipendenti.size();
     }
-    
+    /**
+     * Questo metodo una volta richiamato elimina gli eventuali prodotti scaduti dal magazzino.
+     */
     public void controllaScadenza(){
         Date d = GregorianCalendar.getInstance().getTime(); //data del giorno
         Calendar c = Calendar.getInstance();
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
-            c=p.getDatascadenza(); //data del prodotto
+            c=p.getDatascadenzabyCal(); //data del prodotto
             if(d.compareTo(c.getTime())>0 || d.compareTo(c.getTime())==0)
                 this.deleteProdotto(i);     
         }
     }
     /**
      * Questo metodo permette di stampare una stringa contenente le informazioni del negozio
-     * @return informazioni negozio (string)
+     * @return informazioni negozio
      */
     @Override
     public String toString(){
@@ -200,6 +202,12 @@ public class Negozio {
         file.println(t);
         file.close();
     }
+    /**
+     * Questo metodo permette di prendere i dati da un file.
+     * @param name nome del file
+     * @throws FileNotFoundException
+     * @throws ParseException 
+     */
     public void getFromFile(String name) throws FileNotFoundException, ParseException{
         File input=new File(name);
         Scanner in=new Scanner(input);
@@ -221,10 +229,13 @@ public class Negozio {
                 DateFormat df = new SimpleDateFormat("dd/M/yyyy");
                 df.setLenient(false);
                 Date data= df.parse(d);
-                Prodotto prod = new Prodotto(p,m,d,q,pr);
+                Calendar c = Calendar.getInstance();
+                c.setTime(data);
+                Prodotto prod = new Prodotto(p,m,c,q,pr);
                 this.addProdotto(prod);
+            }
             size=in.nextInt(); //lunghezza lista dipendenti
-            for(int i =0; i<size; i++){
+            for(int i=0; i<size; i++){
                 String chiave =in.next(); //parola chiave
                 int mat =in.nextInt(); //matricola
                 String no =in.next(); //nome
@@ -232,10 +243,22 @@ public class Negozio {
                 String data =in.next(); //data
                 String tel =in.next();
                 String ind =in.next();
-                
+                int nc =in.nextInt(); //numero civico
+                String r=in.next(); //ruolo o riferimento
+                DateFormat df = new SimpleDateFormat("dd/M/yyyy");
+                df.setLenient(false);
+                Date dat= df.parse(data);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dat);
+                if(chiave.equals("Impiegato")){
+                    Impiegato imp = new Impiegato(no,c,cal,tel,ind,nc,r);
+                    this.addDipendente(imp);
+                }
+                else{
+                    Fornitore f = new Fornitore(no,c,cal,tel,ind,nc,r);
+                    this.addDipendente(f);    
+                }
             }
         }
-    
-    
- 
+    }
 }

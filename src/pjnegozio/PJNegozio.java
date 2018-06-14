@@ -12,17 +12,15 @@ public class PJNegozio {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // TODO code application logic here
-        String n = "Red Bull";
-        String m = n;
-        Calendar d = Calendar.getInstance();
-        int q=10;
-        double p =2;
-        Prodotto pro = new Prodotto(n,m,d,q,p);
-        System.out.println(pro.toString());
-        System.out.println(pro.getDatascadenza());
-        
+        Date d = new Date("10/10/1996");
+        Calendar c= Calendar.getInstance();
+        c.set(1996,10,6);
+        Impiegato imp = new Impiegato("Oscar", "Guerra", c, "3775036078", "Via roma", 368, "Capo Supremo");
+        System.out.println(imp.printDipendente());
+        Prodotto p = new Prodotto("Hamburger","Da me",c, 2, 6);
+        System.out.println(p.printProdotto());
     }
     
 }

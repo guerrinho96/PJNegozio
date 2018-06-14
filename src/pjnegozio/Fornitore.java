@@ -12,7 +12,7 @@ import java.util.*;
 public class Fornitore extends Dipendente{
     //Attributi
     private String riferimento; //Nome della fabbrica da dove prende i prodotti
-    public Fornitore(String n, String c, Date d, String t, String i, int nc, String r) {
+    public Fornitore(String n, String c, Calendar d, String t, String i, int nc, String r) {
         super(n, c, d, t, i, nc);
         riferimento=r;
     }
@@ -27,6 +27,11 @@ public class Fornitore extends Dipendente{
     public String toString() {
         return "Fornitore "+super.toString()+" "+riferimento;
     }
+    @Override
+    public String printDipendente(){
+        return super.printDipendente()+"\n"+riferimento;
+    }
+
     
     
 }
