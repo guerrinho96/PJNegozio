@@ -19,7 +19,7 @@ public abstract class Dipendente {
     protected  String telefono;
     protected  String indirizzo;
     protected  int numciv;
-    protected static int nextMat=1;
+    protected static int nextMat=1; //*Ricordarsi di sottolinearlo in uml
     /**
      * Costruttore che crea un dipendente con tutte le sue caratteristiche.
      * @param n nome del dipendente
