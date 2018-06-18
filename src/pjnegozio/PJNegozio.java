@@ -17,8 +17,7 @@ public class PJNegozio {
      * @throws FileNotFoundException
      */
     public static void main(String[] args) throws ParseException, FileNotFoundException {
-        Negozio n = Negozio.getInstance();
-        File f = new File("C:../Desktop/negozio.txt");
+        File f = new File("negozio.txt");
         System.out.println(f.length());
         if(f.length()==0)
             System.out.println("Vuoto");

@@ -19,7 +19,7 @@ public abstract class Dipendente {
     protected  String telefono;
     protected  String indirizzo;
     protected  int numciv;
-    protected static int nextMat=1; //*Ricordarsi di sottolinearlo in uml
+    protected static int nextMat=1; 
     /**
      * Costruttore che crea un dipendente con tutte le sue caratteristiche.
      * @param n nome del dipendente
@@ -69,6 +69,13 @@ public abstract class Dipendente {
         return sd;
     }
     /**
+     * Questo metodo restituisce la data di nascità del dipendente in formato calendar.
+     * @return data di nascita [calendar]
+     */
+    public Calendar getDatanascitabyCal() {
+        return this.datanascita;
+    }
+    /**
      * Questo metodo restituisce il numero di telefono del dipendente.
      * @return numero di telefono
      */
@@ -108,7 +115,7 @@ public abstract class Dipendente {
      * @throws IllegalArgumentException se il numero civico è minore o uguale a 0
      */
     public void setNumciv(int nc) throws IllegalArgumentException{
-        if(nc<=0) throw new IllegalArgumentException();
+        if(nc<=0) throw new IllegalArgumentException("Numero civico non esistente");
         else this.numciv = nc;
     }
     /**

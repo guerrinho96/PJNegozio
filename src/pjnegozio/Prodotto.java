@@ -74,7 +74,7 @@ public class Prodotto {
      * @throws IllegalArgumentException se la quantità è minore o uguale a 0
      */
     public void setQuantità(int q) throws IllegalArgumentException {
-        if(q<=0) throw new IllegalArgumentException();
+        if(q<=0) throw new IllegalArgumentException("Quantità negativa");
         else this.quantità = q;
     }
     /**
@@ -89,7 +89,7 @@ public class Prodotto {
      * @throws IllegalArgumentException se il prezzo è minore o uguale a 0
      */
     public void setPrezzo(double p) throws IllegalArgumentException{
-        if(p<=0) throw new IllegalArgumentException();
+        if(p<=0) throw new IllegalArgumentException("Prezzo negativo");
         else this.prezzo = p;
     }/**
      * Questo metodo permette di stampare le informazioni del prodotto.
