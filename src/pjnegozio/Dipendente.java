@@ -135,7 +135,7 @@ public abstract class Dipendente {
     public String printDipendente(){
         DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
         String sd= d.format(datanascita.getTime());
-        return "Dipendente numero: "+matricola+"\n"+nome+" "+cognome+"\n"+sd+"\n"+indirizzo
+        return "Matricola: "+matricola+"\n"+nome+" "+cognome+"\n"+sd+"\n"+indirizzo
                 +" "+numciv+"\n"+telefono;
     }
 }

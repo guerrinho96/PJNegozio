@@ -179,7 +179,7 @@ public class Negozio {
         }
     }
     /**
-     * Questo metodo permette di stampare una stringa contenente le informazioni del negozio
+     * Questo metodo permette di stampare una stringa contenente le informazioni del negozio.
      * @return informazioni negozio
      */
     @Override
@@ -189,6 +189,17 @@ public class Negozio {
         s+=dipendenti.size()+" ";
         for(Dipendente d : this.dipendenti)
             s+=d.toString();
+        return s;
+    }
+    /**
+     * Questo metodo permette di stampare una stringa contenente le informazioni del negozio.
+     * @return informazioni negozio
+     */
+    public String printNegozio(){
+        String s="Nome: "+this.nome+"\n"+"Numero prodotti: "+this.totMagazzino()+"\n Lista prodotti:\n";
+        for(Prodotto p : this.magazzino) s+=p.printProdotto();
+        s+="\n Numero dipendenti: "+this.totDipendenti()+"\n Lista:\n";
+        for(Dipendente d : this.dipendenti) s+=d.printDipendente();
         return s;
     }
     /**

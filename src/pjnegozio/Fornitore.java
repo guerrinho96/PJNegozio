@@ -42,6 +42,6 @@ public class Fornitore extends Dipendente{
      */
     @Override
     public String printDipendente(){
-        return super.printDipendente()+"\n"+riferimento;
+        return super.printDipendente()+"\n"+riferimento+"\n";
     }
 }

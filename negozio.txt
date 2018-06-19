@@ -1,0 +1,1 @@
+Osk  0 3 Impiegato 1 Oscar Guerra 06/10/1996 3775036078 ViaRoma 368 CapoFornitore 2 Mario Rossi 07/06/1981 3335874621 ViaBali 8 MenariniImpiegato 3 Marco Proia 05/12/1992 3336369684 ViaForconia 1 Cassiere

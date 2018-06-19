@@ -51,6 +51,6 @@ public class Impiegato extends Dipendente {
      */
     @Override
     public String printDipendente(){
-        return super.printDipendente()+"\n"+ruolo;
+        return super.printDipendente()+"\n"+ruolo+"\n";
     }
 }
