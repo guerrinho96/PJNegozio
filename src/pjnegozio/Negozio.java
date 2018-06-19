@@ -73,7 +73,7 @@ public class Negozio {
      * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public Prodotto getProdotto(int i) throws IllegalArgumentException{
-        if(i>=magazzino.size() || i<0) throw new IllegalArgumentException();
+        if(i>=magazzino.size() || i<0) throw new IllegalArgumentException("Invalid position");
         else return this.magazzino.get(i);
     }
     /**
@@ -83,7 +83,7 @@ public class Negozio {
      * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public Dipendente getDipendente(int i) throws IllegalArgumentException{
-        if(i>=dipendenti.size() || i<0) throw new IllegalArgumentException();
+        if(i>=dipendenti.size() || i<0) throw new IllegalArgumentException("Invalid position");
         else return this.dipendenti.get(i);
     }
     /**
@@ -106,7 +106,7 @@ public class Negozio {
      * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public void deleteDipendente(int i) throws IllegalArgumentException{
-        if(i>=this.dipendenti.size() || i<0) throw new IllegalArgumentException();
+        if(i>=this.dipendenti.size() || i<0) throw new IllegalArgumentException("Invalid position");
         this.dipendenti.remove(i);
     }
     /**
@@ -115,7 +115,7 @@ public class Negozio {
      * @throws IllegalArgumentException se la posizione è negativa o più grande della lunghezza della lista
      */
     public void deleteProdotto(int i) throws IllegalArgumentException{
-        if(i>=this.magazzino.size() || i<0) throw new IllegalArgumentException();
+        if(i>=this.magazzino.size() || i<0) throw new IllegalArgumentException("Invalid position");
         else this.magazzino.remove(i);
     }
     /**
