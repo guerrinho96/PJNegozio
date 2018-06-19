@@ -12,14 +12,13 @@ import javax.swing.*;
 public class PJNegozio {
     private static Negozio n = Negozio.getInstance();
     /**
-     * Funzione che setta/cambia il nome del negozio e stampa le sue informazioni.
+     * Funzione che setta/cambia il nome del negozio.
      */
     private static void nameNeg(){
         Scanner in= new Scanner(System.in);
         System.out.println("Nome negozio?");
         String s = in.next();
         n.setNome(s);
-        System.out.println(n.printNegozio());
     }
     /**
      * Funzione che permette la gestione dei dipendenti.
@@ -38,74 +37,84 @@ public class PJNegozio {
             if(scelta==1)
                 System.out.println("Il numero di dipendenti è: "+n.totDipendenti()+"\n"+n.getDipendenti());
             else if(scelta==2){
-                System.out.println("Nome?");
-                String name = in.next();
-                System.out.println("Cognome?");
-                String cog = in.next();
-                System.out.println("Data di nascità (gg/mm/aaaa)?");
-                String data = in.next();
-                DateFormat df = new SimpleDateFormat("dd/M/yyyy");
-                df.setLenient(false);
-                Date dat= df.parse(data);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(dat);
-                System.out.println("Telefono?");
-                String tel = in.next();
-                System.out.println("Indirizzo? [es: ViaRoma or Via-Roma]");
-                String ind = in.next();
-                System.out.println("Numero civico?");
-                int nc = in.nextInt();
-                System.out.println("Impiegato[i/I] o Fornitore[f7F]?");
-                String dip = in.next();
-                System.out.println("Ruolo/Riferimento?");
-                String r = in.next();
-                boolean d=true;
-                while(d){
-                    if(dip.equals("i") || dip.equals("I")){
-                        Impiegato imp = new Impiegato(name,cog,cal,tel,ind,nc,r);
-                        n.addDipendente(imp);
-                        d=false;
-                        System.out.print("Impiegato aggiunto\n");
+                try{
+                    System.out.println("Nome?");
+                    String name = in.next();
+                    System.out.println("Cognome?");
+                    String cog = in.next();
+                    System.out.println("Data di nascità (gg/mm/aaaa)?");
+                    String data = in.next();
+                    DateFormat df = new SimpleDateFormat("dd/M/yyyy");
+                    df.setLenient(false);
+                    Date dat= df.parse(data);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(dat);
+                    System.out.println("Telefono?");
+                    String tel = in.next();
+                    System.out.println("Indirizzo? [es: ViaRoma or Via-Roma]");
+                    String ind = in.next();
+                    System.out.println("Numero civico?");
+                    int nc = in.nextInt();
+                    System.out.println("Impiegato[i/I] o Fornitore[f7F]?");
+                    String dip = in.next();
+                    System.out.println("Ruolo/Riferimento?");
+                    String r = in.next();
+                    boolean d=true;
+                    while(d){
+                        if(dip.equals("i") || dip.equals("I")){
+                            Impiegato imp = new Impiegato(name,cog,cal,tel,ind,nc,r);
+                            n.addDipendente(imp);
+                            d=false;
+                            System.out.print("Impiegato aggiunto\n");
+                        }
+                        else if(dip.equals("f") || dip.equals("F")){
+                            Fornitore fo= new Fornitore(name,cog,cal,tel,ind,nc,r);
+                            n.addDipendente(fo);
+                            d=false;
+                            System.out.println("Fornitore aggiunto");
+                        }
+                        else{
+                            System.out.println("ERRORE!\n Impiegato[i/I] o Fornitore[f/F]?");
+                            dip = in.next();
+                        }
                     }
-                    else if(dip.equals("f") || dip.equals("F")){
-                        Fornitore fo= new Fornitore(name,cog,cal,tel,ind,nc,r);
-                        n.addDipendente(fo);
-                        d=false;
-                        System.out.println("Fornitore aggiunto");
-                    }
-                    else{
-                        System.out.println("ERRORE!\n Impiegato[i/I] o Fornitore[f/F]?");
-                        dip = in.next();
-                    }
+                }
+                catch (IllegalArgumentException a){
+                    System.out.println("Numero civico non valido.");
                 }
             }
             else if(scelta==3){
-                if(n.getDipendenti().isEmpty())
-                    System.out.println("Non ci sono dipendenti.");
-                else{
-                    System.out.println("Posizione[p/P] o Matricola[m/M]?");
-                    String sc=in.next();
-                    boolean d=true;
-                    while(d){
-                        if(sc.equals("p") || sc.equals("P")){
-                            System.out.println("Inserire la posizione: ");
-                            int i=in.nextInt();
-                            n.deleteDipendente(i);
-                            d=false;
+                try{
+                    if(n.getDipendenti().isEmpty())
+                        System.out.println("Non ci sono dipendenti.");
+                    else{
+                        System.out.println("Posizione[p/P] o Matricola[m/M]?");
+                        String sc=in.next();
+                        boolean d=true;
+                        while(d){
+                            if(sc.equals("p") || sc.equals("P")){
+                                System.out.println("Inserire la posizione: ");
+                                int i=in.nextInt();
+                                n.deleteDipendente(i);
+                                d=false;
+                            }
+                            else if(sc.equals("m") || sc.equals("M")){
+                                System.out.println("Inserire la matricola: ");
+                                int m=in.nextInt();
+                                boolean ris=n.deleteDipendentebyMat(m);
+                                if(ris==true) d=false;
+                                else d=true;
+                            }
+                            else{
+                                System.out.println("ERRORE!\n Posizione[p/P] o Matricola[m/M]?");
+                                sc=in.next();
+                            }
                         }
-                        else if(sc.equals("m") || sc.equals("M")){
-                            System.out.println("Inserire la matricola: ");
-                            int m=in.nextInt();
-                            boolean ris=n.deleteDipendentebyMat(m);
-                            if(ris==true) d=false;
-                            else d=true;
-                        }
-                        else{
-                            System.out.println("ERRORE!\n Posizione[p/P] o Matricola[m/M]?");
-                            sc=in.next();
-                        }
+                        System.out.println("Dipendente licenziato.");
                     }
-                    System.out.println("Dipendente licenziato.");
+                }
+                catch (IllegalArgumentException a){
+                    System.out.println("Posizione non valida.");
                 }
             }
             else if(scelta==4) quit=false;      
@@ -129,53 +138,62 @@ public class PJNegozio {
             if(scelta==1)
                 System.out.println("Il numero di prodotti è: "+n.totMagazzino()+"\n"+n.getMagazzino());
             else if(scelta==2){
-                System.out.println("Nome?");
-                String nome = in.next();
-                System.out.println("Marca?");
-                String marca = in.next();
-                System.out.println("Data di scadenza (gg/mm/aaaa)?");
-                String data = in.next();
-                DateFormat df = new SimpleDateFormat("dd/M/yyyy");
-                df.setLenient(false);
-                Date dat= df.parse(data);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(dat);
-                System.out.println("Quantità?");
-                int q = in.nextInt();
-                System.out.println("Prezzo?");
-                double pr = in.nextDouble();
-                Prodotto p = new Prodotto(nome,marca,cal,q,pr);
-                n.addProdotto(p);
-                System.out.println("Il prodotto è stato aggiunto.");
+                try{
+                    System.out.println("Nome?");
+                    String nome = in.next();
+                    System.out.println("Marca?");
+                    String marca = in.next();
+                    System.out.println("Data di scadenza (gg/mm/aaaa)?");
+                    String data = in.next();
+                    DateFormat df = new SimpleDateFormat("dd/M/yyyy");
+                    df.setLenient(false);
+                    Date dat= df.parse(data);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(dat);
+                    System.out.println("Quantità?");
+                    int q = in.nextInt();
+                    System.out.println("Prezzo?");
+                    double pr = in.nextDouble();
+                    Prodotto p = new Prodotto(nome,marca,cal,q,pr);
+                    n.addProdotto(p);
+                    System.out.println("Il prodotto è stato aggiunto.");
+                }
+                catch (IllegalArgumentException a){
+                    System.out.println("Quantità o Prezzo non valido.");
+                } 
             }
             else if(scelta==3){
-                if(n.getMagazzino().isEmpty())
+                try{
+                    if(n.getMagazzino().isEmpty())
                     System.out.println("Non ci sono prodotti in magazzino");
-                else{
-                    System.out.println("Posizione[p/P] o Nome[n/N]?");
-                    String sc=in.next();
-                    boolean d=true;
-                    while(d){
-                        if(sc.equals("p") || sc.equals("P")){
-                            System.out.println("Inserire la posizione: ");
-                            int i=in.nextInt();
-                            n.deleteProdotto(i);
-                            d=false;
+                    else{
+                        System.out.println("Posizione[p/P] o Nome[n/N]?");
+                        String sc=in.next();
+                        boolean d=true;
+                        while(d){
+                            if(sc.equals("p") || sc.equals("P")){
+                                System.out.println("Inserire la posizione: ");
+                                int i=in.nextInt();
+                                n.deleteProdotto(i);
+                                d=false;
+                            }
+                            else if(sc.equals("n") || sc.equals("N")){
+                                System.out.println("Inserire il nome: ");
+                                String no=in.next();
+                                boolean ris=n.deleteProdotto(no);
+                                if(ris==true) d=false;
+                                else d=true;
+                            }
+                            else{
+                                System.out.println("ERRORE!\n Posizione[p/P] o Nome[n/N]?");
+                                sc=in.next();
+                            }
                         }
-                        else if(sc.equals("n") || sc.equals("N")){
-                            System.out.println("Inserire il nome: ");
-                            String no=in.next();
-                            boolean ris=n.deleteProdotto(no);
-                            if(ris==true) d=false;
-                            else d=true;
-                        }
-                        else{
-                            System.out.println("ERRORE!\n Posizione[p/P] o Nome[n/N]?");
-                            sc=in.next();
-                        }
-
+                        System.out.println("Prodotto Eliminato.");
                     }
-                    System.out.println("Prodotto Eliminato.");
+                }
+                catch (IllegalArgumentException a){
+                    System.out.println("Posizione non valida.");
                 }
             }
             else if(scelta==4){
@@ -237,7 +255,7 @@ public class PJNegozio {
      * @throws ParseException
      * @throws FileNotFoundException
      */
-    public static void main(String[] args) throws ParseException, FileNotFoundException {
+    public static void main(String[] args) {
         boolean quit=true;
         Scanner in= new Scanner(System.in);
         int scelta;
@@ -252,8 +270,22 @@ public class PJNegozio {
                                + "7:Quit.");
             scelta = in.nextInt();
             if(scelta==1) nameNeg();
-            else if(scelta==2) opDip();
-            else if(scelta==3) opMag();
+            else if(scelta==2){
+                try{
+                    opDip();
+                }
+                catch (ParseException p){
+                    System.out.println("Formato data errato.");
+                }
+            }
+            else if(scelta==3){
+                try{
+                    opMag();
+                }
+                catch (ParseException p){
+                    System.out.println("Formato data errato.");
+                }
+            }
             else if(scelta==4) saveTo();
             else if(scelta==5) fileTo();
             else if(scelta==6) System.out.println(n.printNegozio());
