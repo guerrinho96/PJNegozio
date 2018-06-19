@@ -1,1 +1,1 @@
-Osk  0 3 Impiegato 1 Oscar Guerra 06/10/1996 3775036078 ViaRoma 368 CapoFornitore 2 Mario Rossi 07/06/1981 3335874621 ViaBali 8 MenariniImpiegato 3 Marco Proia 05/12/1992 3336369684 ViaForconia 1 Cassiere
+Gna 2 Frutti Diavolo 12/12/2018 2 80.0 Libro Panini 20/05/2100 1 15.4 3 Impiegato 1 Oscar Guerra 06/10/1996 3775036078 ViaRoma 368 Capo Impiegato 2 Goku Sayan 04/03/1985 3312589654 ViaKhame 1 Direttore Fornitore 3 Luffy Monkey 19/05/1997 3498754225 ViaSunny 2 PirateKing 

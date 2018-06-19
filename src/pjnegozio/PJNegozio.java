@@ -140,7 +140,7 @@ public class PJNegozio {
                 Date dat= df.parse(data);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dat);
-                System.out.println("Quantità");
+                System.out.println("Quantità?");
                 int q = in.nextInt();
                 System.out.println("Prezzo?");
                 double pr = in.nextDouble();
@@ -149,30 +149,42 @@ public class PJNegozio {
                 System.out.println("Il prodotto è stato aggiunto.");
             }
             else if(scelta==3){
-                System.out.println("Posizione[p/P] o Nome[n/N]?");
-                String sc=in.next();
-                boolean d=true;
-                while(d){
-                    if(sc.equals("p") || sc.equals("P")){
-                        System.out.println("Inserire la posizione: ");
-                        int i=in.nextInt();
-                        n.deleteProdotto(i);
-                        d=false;
+                if(n.getMagazzino().isEmpty())
+                    System.out.println("Non ci sono prodotti in magazzino");
+                else{
+                    System.out.println("Posizione[p/P] o Nome[n/N]?");
+                    String sc=in.next();
+                    boolean d=true;
+                    while(d){
+                        if(sc.equals("p") || sc.equals("P")){
+                            System.out.println("Inserire la posizione: ");
+                            int i=in.nextInt();
+                            n.deleteProdotto(i);
+                            d=false;
+                        }
+                        else if(sc.equals("n") || sc.equals("N")){
+                            System.out.println("Inserire il nome: ");
+                            String no=in.next();
+                            boolean ris=n.deleteProdotto(no);
+                            if(ris==true) d=false;
+                            else d=true;
+                        }
+                        else{
+                            System.out.println("ERRORE!\n Posizione[p/P] o Nome[n/N]?");
+                            sc=in.next();
+                        }
+
                     }
-                    else if(sc.equals("n") || sc.equals("N")){
-                        System.out.println("Inserire il nome: ");
-                        String no=in.next();
-                        boolean ris=n.deleteProdotto(no);
-                        if(ris==true) d=false;
-                        else d=true;
-                    }
-                    else System.out.println("ERRORE!\n Posizione[p/P] o Nome[n/N]?");
+                    System.out.println("Prodotto Eliminato.");
                 }
-                System.out.println("Prodotto Eliminato.");
             }
             else if(scelta==4){
-                n.controllaScadenza();
-                System.out.println("I prodotti scaduti sono stati eliminati.");
+                 if(n.getMagazzino().isEmpty())
+                    System.out.println("Non ci sono prodotti in magazzino");
+                else{
+                    n.controllaScadenza();
+                    System.out.println("Eventuali prodotti scaduti sono stati eliminati.");
+                 }
             }
             else if(scelta==5) quit=false; 
         }

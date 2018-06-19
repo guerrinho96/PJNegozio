@@ -34,7 +34,7 @@ public class Fornitore extends Dipendente{
      */
     @Override
     public String toString() {
-        return "Fornitore "+super.toString()+" "+riferimento;
+        return "Fornitore "+super.toString()+" "+riferimento+" ";
     }
     /**
      * Questo metodo permette di stampare le informazioni del dipendente.

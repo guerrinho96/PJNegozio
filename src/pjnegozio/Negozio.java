@@ -222,6 +222,7 @@ public class Negozio {
     public void getFromFile(String name) throws FileNotFoundException, ParseException{
         File input=new File(name);
         Scanner in=new Scanner(input);
+        in.useLocale(Locale.ENGLISH);
         this.magazzino.clear();
         this.dipendenti.clear();
         while(in.hasNext())
@@ -236,7 +237,7 @@ public class Negozio {
                 String m=in.next(); //marca del prodotto
                 String d=in.next(); //data del prodotto
                 int q=in.nextInt(); //quantità
-                double pr=in.nextDouble(); //prezzo
+                Double pr=in.nextDouble(); //prezzo
                 DateFormat df = new SimpleDateFormat("dd/M/yyyy");
                 df.setLenient(false);
                 Date data= df.parse(d);

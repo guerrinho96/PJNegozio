@@ -43,7 +43,7 @@ public class Impiegato extends Dipendente {
      */
     @Override
     public String toString() {
-        return "Impiegato "+super.toString()+" "+ruolo;
+        return "Impiegato "+super.toString()+" "+ruolo+" ";
     }
     /**
      * Questo metodo permette di stampare le informazioni del dipendente.
