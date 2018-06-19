@@ -6,7 +6,9 @@ import java.util.*;
 import java.text.*;
 import javax.swing.*;
 
-/**
+/**<i><b>Classe PJNegozio</b><br>
+ * La classe PJNegozio è la classe di esecuzione dove si interfaccia l'utente per gestire il negozio.<br>
+ * Sono presenti diverse funzioni private che poi vengono richiamate nel main.</i>
  * @author Oscar
  */
 public class PJNegozio {
@@ -251,9 +253,8 @@ public class PJNegozio {
         else System.out.println("Il file " + path + " non può essere creato");
     }
     /**
+     * La funzione main è l'interfaccia del utente.
      * @param args the command line arguments
-     * @throws ParseException
-     * @throws FileNotFoundException
      */
     public static void main(String[] args) {
         boolean quit=true;
