@@ -255,6 +255,8 @@ public class Negozio {
                 String data =in.next(); //data
                 String tel =in.next();
                 String ind =in.next();
+                while(!in.hasNextInt())
+                    ind+=in.next();
                 int nc =in.nextInt(); //numero civico
                 String r=in.next(); //ruolo o riferimento
                 DateFormat df = new SimpleDateFormat("dd/M/yyyy");

@@ -52,11 +52,12 @@ public class PJNegozio {
                     cal.setTime(dat);
                     System.out.println("Telefono?");
                     String tel = in.next();
-                    System.out.println("Indirizzo? [es: ViaRoma or Via-Roma]");
-                    String ind = in.next();
+                    System.out.println("Indirizzo?");
+                    in.nextLine();
+                    String ind = in.nextLine();
                     System.out.println("Numero civico?");
                     int nc = in.nextInt();
-                    System.out.println("Impiegato[i/I] o Fornitore[f7F]?");
+                    System.out.println("Impiegato[i/I] o Fornitore[f/F]?");
                     String dip = in.next();
                     System.out.println("Ruolo/Riferimento?");
                     String r = in.next();
