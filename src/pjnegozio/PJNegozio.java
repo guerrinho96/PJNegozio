@@ -54,7 +54,8 @@ public class PJNegozio {
                     String tel = in.next();
                     System.out.println("Indirizzo?");
                     in.nextLine();
-                    String ind = in.nextLine();
+                    String ind = in.nextLine();1
+                            
                     System.out.println("Numero civico?");
                     int nc = in.nextInt();
                     System.out.println("Impiegato[i/I] o Fornitore[f/F]?");
