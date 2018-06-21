@@ -4,7 +4,6 @@ package pjnegozio;
 import java.io.*;
 import java.util.*;
 import java.text.*;
-import javax.swing.*;
 
 /**<i><b>Classe PJNegozio</b><br>
  * La classe PJNegozio è la classe di esecuzione dove si interfaccia l'utente per gestire il negozio.<br>
@@ -237,9 +236,11 @@ public class PJNegozio {
         }
     }
     /**
-     * La funzione permette di caricare da file.
+     * La funzione main è l'interfaccia del utente, all'avvio prende le informazioni da file e crea
+     * il menù a tendina con cui l'utente si interfaccia.
+     * @param args the command line arguments
      */
-    private static void fileTo(){
+    public static void main(String[] args) {
         String path ="negozio.txt";
         File file = new File(path);
         if (file.exists()){
@@ -247,16 +248,9 @@ public class PJNegozio {
                 n.getFromFile(path);
                 System.out.println("Caricamento effettuato.");
             }
-            catch(FileNotFoundException f) {f.printStackTrace();}
-            catch(ParseException p) {p.printStackTrace();}
+            catch(FileNotFoundException | ParseException f) {f.printStackTrace();}
         }
         else System.out.println("Il file " + path + " non può essere creato");
-    }
-    /**
-     * La funzione main è l'interfaccia del utente.
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
         boolean quit=true;
         Scanner in= new Scanner(System.in);
         int scelta;
@@ -266,9 +260,8 @@ public class PJNegozio {
                                + "2:Operazioni con i dipendenti;\n"
                                + "3:Operare nel magazzino;\n"
                                + "4:Salvare;\n"
-                               + "5:Caricare da file;\n"
-                               + "6:Stampa informazioni negozio;\n"
-                               + "7:Quit.");
+                               + "5:Stampa informazioni negozio;\n"
+                               + "6:Quit.");
             scelta = in.nextInt();
             if(scelta==1) nameNeg();
             else if(scelta==2){
@@ -288,9 +281,8 @@ public class PJNegozio {
                 }
             }
             else if(scelta==4) saveTo();
-            else if(scelta==5) fileTo();
-            else if(scelta==6) System.out.println(n.printNegozio());
-            else if(scelta==7) quit=false;
+            else if(scelta==5) System.out.println(n.printNegozio());
+            else if(scelta==6) quit=false;
         }
     }
 }
