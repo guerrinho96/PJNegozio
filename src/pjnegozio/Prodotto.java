@@ -108,7 +108,7 @@ public class Prodotto {
     public String printProdotto(){
         DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
         String sd= d.format(datascadenza.getTime());
-        return "Prodotto: \n"+nome+" "+marca+"\ndata scadenza: "+sd+"\nquantità: "+quantità+"\nprezzo(€): "+prezzo;
+        return "Prodotto: \n"+nome+" "+marca+"\ndata scadenza: "+sd+"\nquantità: "+quantità+"\nprezzo(€): "+prezzo+"\n";
     }
 }
     

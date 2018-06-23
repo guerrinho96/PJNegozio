@@ -55,7 +55,6 @@ public class PJNegozio {
                     System.out.println("Indirizzo?");
                     in.nextLine();
                     String ind = in.nextLine();
-                            
                     System.out.println("Numero civico?");
                     int nc = in.nextInt();
                     System.out.println("Impiegato[i/I] o Fornitore[f/F]?");

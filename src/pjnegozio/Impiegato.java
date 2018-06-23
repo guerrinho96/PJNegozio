@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Impiegato extends Dipendente {
     private String ruolo;
-    /**
+    /**2
      * Il costruttore si riferisce al costruttore di dipendente con l'aggiunta del ruolo.
      * @param n nome
      * @param c cognome
