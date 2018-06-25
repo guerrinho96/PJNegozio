@@ -26,7 +26,7 @@ public class Dirigente extends Dipendente{
      * Questo metodo permette di aggiornare il numero di missioni.
      * @param m nuovo riferimento
      */
-    public void setAmbito(int m) {
+    public void setNumMissioni(int m) {
         this.nMission=m;
     }
     /**
