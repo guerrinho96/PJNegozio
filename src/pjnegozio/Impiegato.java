@@ -1,6 +1,8 @@
 
 package pjnegozio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 /**
  * <i><b>Classe Impiegato</b><br>
@@ -9,7 +11,7 @@ import java.util.*;
  */
 public class Impiegato extends Dipendente {
     private String ruolo;
-    /**2
+    /**
      * Il costruttore si riferisce al costruttore di dipendente con l'aggiunta del ruolo.
      * @param n nome
      * @param c cognome
@@ -51,6 +53,9 @@ public class Impiegato extends Dipendente {
      */
     @Override
     public String printDipendente(){
-        return super.printDipendente()+"\n"+ruolo+"\n";
+        DateFormat d = new SimpleDateFormat("dd/MM/yyyy");
+        String sd= d.format(datanascita.getTime());
+        return super.printDipendente()+"IMPIEGATO: "+nome+" "+cognome+"\nNATO IL:   "+sd+"\nRISIEDE A: "
+                +indirizzo+" "+numciv+"\nTELEFONO:  "+telefono+"\nRUOLO:     "+ruolo+"\n"+"\n";
     }
 }

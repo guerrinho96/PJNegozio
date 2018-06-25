@@ -18,6 +18,7 @@ public class PJNegozio {
     private static void nameNeg(){
         Scanner in= new Scanner(System.in);
         System.out.println("Nome negozio?");
+        in.nextLine();
         String s = in.next();
         n.setNome(s);
     }
@@ -57,26 +58,28 @@ public class PJNegozio {
                     String ind = in.nextLine();
                     System.out.println("Numero civico?");
                     int nc = in.nextInt();
-                    System.out.println("Impiegato[i/I] o Fornitore[f/F]?");
+                    System.out.println("Impiegato[i/I] o Dirigente[d/D]?");
                     String dip = in.next();
-                    System.out.println("Ruolo/Riferimento?");
-                    String r = in.next();
                     boolean d=true;
                     while(d){
                         if(dip.equals("i") || dip.equals("I")){
+                            System.out.println("Ruolo?");
+                            String r = in.next();
                             Impiegato imp = new Impiegato(name,cog,cal,tel,ind,nc,r);
                             n.addDipendente(imp);
                             d=false;
                             System.out.print("Impiegato aggiunto\n");
                         }
-                        else if(dip.equals("f") || dip.equals("F")){
-                            Fornitore fo= new Fornitore(name,cog,cal,tel,ind,nc,r);
-                            n.addDipendente(fo);
+                        else if(dip.equals("d") || dip.equals("D")){
+                            System.out.println("Numero missioni?");
+                            int m = in.nextInt();
+                            Dirigente dir= new Dirigente(name,cog,cal,tel,ind,nc,m);
+                            n.addDipendente(dir);
                             d=false;
-                            System.out.println("Fornitore aggiunto");
+                            System.out.println("Dirigente aggiunto");
                         }
                         else{
-                            System.out.println("ERRORE!\n Impiegato[i/I] o Fornitore[f/F]?");
+                            System.out.println("ERRORE!\n Impiegato[i/I] o Dirigente[d/D]?");
                             dip = in.next();
                         }
                     }
@@ -212,25 +215,25 @@ public class PJNegozio {
     /**
      * La funzione permette di salvare su file.
      */
-    private static void saveTo(){
-        String path ="negozio.txt";
-        File file = new File(path);
+    private static void saveTo(String p){
+        String path =p;
+        File file = new File(p);
         try {
             if(file.exists()){
                 try{
-                    n.savetoFile(path);
+                    n.savetoFile(p);
                     System.out.println("Salvataggio effettutato.");
                 }
                 catch(FileNotFoundException f){f.printStackTrace();}
             }    
             else if(file.createNewFile()){
                 try{
-                    n.savetoFile(path);
+                    n.savetoFile(p);
                     System.out.println("Salvataggio effettutato.");
                 }
                 catch(FileNotFoundException f){f.printStackTrace();}
             }
-            else System.out.println("Il file " + path + " non può essere creato");
+            else System.out.println("Il file " + p + " non può essere creato");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -251,7 +254,7 @@ public class PJNegozio {
             }
             catch(FileNotFoundException | ParseException f) {f.printStackTrace();}
         }
-        else System.out.println("Il file " + path + " non può essere creato");
+        else System.out.println("Il file " + path + " non è presente");
         boolean quit=true;
         Scanner in= new Scanner(System.in);
         int scelta;
@@ -281,7 +284,7 @@ public class PJNegozio {
                     System.out.println("Formato data errato.");
                 }
             }
-            else if(scelta==4) saveTo();
+            else if(scelta==4) saveTo(path);
             else if(scelta==5) System.out.println(n.printNegozio());
             else if(scelta==6) quit=false;
         }

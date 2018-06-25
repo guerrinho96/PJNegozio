@@ -196,9 +196,9 @@ public class Negozio {
      * @return informazioni negozio
      */
     public String printNegozio(){
-        String s="Nome: "+this.nome+"\n"+"Numero prodotti: "+this.totMagazzino()+"\n Lista prodotti:\n";
+        String s="NOME NEGOZIO: "+this.nome+"\n"+"\n"+"LISTA PRODOTTI(TOT."+this.totMagazzino()+"):\n";
         for(Prodotto p : this.magazzino) s+=p.printProdotto();
-        s+="\n Numero dipendenti: "+this.totDipendenti()+"\n Lista:\n";
+        s+="\nNUMERO DIPENDENTI(TOT."+this.totDipendenti()+"):\n";
         for(Dipendente d : this.dipendenti) s+=d.printDipendente();
         return s;
     }
@@ -258,21 +258,23 @@ public class Negozio {
                 while(!in.hasNextInt())
                     ind+=" "+in.next();
                 int nc =in.nextInt(); //numero civico
-                String r=in.next(); //ruolo o riferimento
                 DateFormat df = new SimpleDateFormat("dd/M/yyyy");
                 df.setLenient(false);
                 Date dat= df.parse(data);
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dat);
                 if(chiave.equals("Impiegato")){
+                    String r=in.next(); //ruolo o riferimento
                     Impiegato imp = new Impiegato(no,c,cal,tel,ind,nc,r);
                     this.addDipendente(imp);
                 }
                 else{
-                    Fornitore f = new Fornitore(no,c,cal,tel,ind,nc,r);
-                    this.addDipendente(f);    
+                    int m=in.nextInt();
+                    Dirigente d = new Dirigente(no,c,cal,tel,ind,nc,m);
+                    this.addDipendente(d);    
                 }
             }
         }
+        in.close();
     }
 }
