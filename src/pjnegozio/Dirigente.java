@@ -6,7 +6,7 @@ import java.util.*;
 
 /**<i><b>Classe Dirigente</b><br>
  * La classe Dirigente è una estensione della classe Dipendente, 
- * caraterizzata dal ambito di lavoro del dirigente.</i>
+ * caraterizzata dal numero di missioni svolte dal dirigente.</i>
  * @author Oscar
  */
 public class Dirigente extends Dipendente{
