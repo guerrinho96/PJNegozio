@@ -6,7 +6,7 @@ import java.util.*;
 
 /**<i><b>Classe Dirigente</b><br>
  * La classe Dirigente è una estensione della classe Dipendente, 
- * caraterizzata dal ambito di lavoro del dirigente.</i>
+ * caraterizzata dal numero di missioni svolte dal dirigente.</i>
  * @author Oscar
  */
 public class Dirigente extends Dipendente{
@@ -26,7 +26,7 @@ public class Dirigente extends Dipendente{
      * Questo metodo permette di aggiornare il numero di missioni.
      * @param m nuovo riferimento
      */
-    public void setAmbito(int m) {
+    public void setNumMissioni(int m) {
         this.nMission=m;
     }
     /**

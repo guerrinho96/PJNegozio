@@ -127,10 +127,11 @@ public class Negozio {
         boolean r=false;
         for(int i=0; i<magazzino.size();i++){
             Prodotto p= magazzino.get(i);
-            if(p.getNome().equals(n))
+            if(p.getNome().equals(n)){
                 magazzino.remove(i);
                 r=true;
                 i=magazzino.size();//Così facendo viene eliminato il primo prodotto nell'array che ha quel nome
+            }
         }
         return r;
     }

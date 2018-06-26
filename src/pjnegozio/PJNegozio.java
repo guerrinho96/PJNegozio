@@ -18,7 +18,6 @@ public class PJNegozio {
     private static void nameNeg(){
         Scanner in= new Scanner(System.in);
         System.out.println("Nome negozio?");
-        in.nextLine();
         String s = in.next();
         n.setNome(s);
     }
@@ -181,20 +180,25 @@ public class PJNegozio {
                                 int i=in.nextInt();
                                 n.deleteProdotto(i);
                                 d=false;
+                                System.out.println("Prodotto eliminato.");
                             }
                             else if(sc.equals("n") || sc.equals("N")){
                                 System.out.println("Inserire il nome: ");
                                 String no=in.next();
                                 boolean ris=n.deleteProdotto(no);
-                                if(ris==true) d=false;
-                                else d=true;
+                                if(ris==true){
+                                    System.out.println("Prodotto eliminato.");
+                                }
+                                else{
+                                    System.out.println("Prodotto non esistente.");
+                                }
+                                d=false;
                             }
                             else{
                                 System.out.println("ERRORE!\n Posizione[p/P] o Nome[n/N]?");
                                 sc=in.next();
                             }
                         }
-                        System.out.println("Prodotto Eliminato.");
                     }
                 }
                 catch (IllegalArgumentException a){
